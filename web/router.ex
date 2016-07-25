@@ -21,8 +21,9 @@ defmodule PhoenixTestApp.Router do
     get "/hello/:messenger", HelloController, :show
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", PhoenixTestApp do
-  #   pipe_through :api
-  # end
+  scope "/api", PhoenixTestApp do
+    pipe_through :api
+
+    get "/messages", MessagesController, :index
+  end
 end
