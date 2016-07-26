@@ -17,6 +17,10 @@ defmodule PhoenixTestApp.ErrorView do
     %{errors: %{message: "Not Found"}}
   end
 
+  def render("422.json", _assigns) do
+    %{errors: %{message: "Unprocessable Entity"}}
+  end
+
   def render("500.json", _assigns) do
     %{errors: %{message: "Server Error"}}
   end

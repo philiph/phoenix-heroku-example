@@ -55,4 +55,27 @@ defmodule PhoenixTestApp.MessagesControllerTest do
     assert response_data["id"] == message_id
     assert response_data["message"] == "First message."
   end
+
+  test "POST /api/messages with a valid body", %{conn: conn} do
+    post_data = %{"message" => %{"message" => "Hello!"}}
+    conn = post conn, "/api/messages", post_data
+
+    response_data = json_response(conn, 201)
+    assert response_data["message"] == "Hello!"
+  end
+
+  test "POST /api/messages with an invalid message", %{conn: conn} do
+    post_data = %{"message" => %{"message" => ""}}
+    conn = post conn, "/api/messages", post_data
+
+    response_data = json_response(conn, 422)
+    assert response_data == %{"errors" => %{"message" => "Unprocessable Entity"}}
+  end
+
+  test "POST /api/messages with an invalid body structure", %{conn: conn} do
+    post_data = %{}
+    assert_error_sent 400, fn ->
+      post conn, "/api/messages", post_data
+    end
+  end
 end
