@@ -1,5 +1,6 @@
 defmodule PhoenixTestApp.Message do
   use PhoenixTestApp.Web, :model
+  @derive {Poison.Encoder, only: [:id, :message, :inserted_at, :updated_at]}
 
   schema "messages" do
     field :message, :string
