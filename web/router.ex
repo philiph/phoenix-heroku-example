@@ -25,6 +25,6 @@ defmodule PhoenixTestApp.Router do
     pipe_through :api
 
     get "/", ApiHomeController, :index
-    get "/messages", MessagesController, :index
+    resources "/messages", MessagesController, only: [:index, :show]
   end
 end

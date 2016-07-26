@@ -6,6 +6,10 @@ defmodule PhoenixTestApp.MessagesView do
     %{messages: serialize_messages(messages)}
   end
 
+  def render("show.json", %{message: message}) do
+    serialize_message(message)
+  end
+
   defp serialize_messages(messages) do
     messages
     |> Enum.map(&serialize_message/1)
