@@ -3,6 +3,8 @@ defmodule PhoenixTestApp.MessagesController do
   alias PhoenixTestApp.Repo
   alias PhoenixTestApp.Message
 
+  plug :scrub_params, "message" when action in [:create]
+
   def index(conn, _params) do
     messages = Repo.all(Message)
     render conn, "index.json", messages: messages
