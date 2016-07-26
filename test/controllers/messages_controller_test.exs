@@ -38,7 +38,7 @@ defmodule PhoenixTestApp.MessagesControllerTest do
     conn = get conn, "/api/messages/1"
 
     response_data = json_response(conn, 404)
-    assert response_data == %{"errors" => %{"message" => "Not Found"}}
+    assert response_data == %{"errors" => %{"message" => "Message not found"}}
   end
 
   test "GET /api/messages/1 when message exists", %{conn: conn} do

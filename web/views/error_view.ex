@@ -9,6 +9,10 @@ defmodule PhoenixTestApp.ErrorView do
     "Internal server error"
   end
 
+  def render("404.json", %{message: message}) do
+    %{errors: %{message: message}}
+  end
+
   def render("404.json", _assigns) do
     %{errors: %{message: "Not Found"}}
   end

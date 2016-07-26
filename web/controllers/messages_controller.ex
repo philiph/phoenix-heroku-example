@@ -15,7 +15,7 @@ defmodule PhoenixTestApp.MessagesController do
       nil ->
         conn
         |> put_status(:not_found)
-        |> render(PhoenixTestApp.ErrorView, "404.json", %{})
+        |> render(PhoenixTestApp.ErrorView, "404.json", message: "Message not found")
       _ ->
         conn
         |> render("show.json", message: message)
